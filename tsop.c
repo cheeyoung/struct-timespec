@@ -16,7 +16,7 @@ int tsop_subtract
     if ( (*ts3).tv_nsec < 0 )
     {
         (*ts3).tv_sec = (*ts3).tv_sec - 1 ;
-        (*ts3).tv_nsec = (*ts3).tv_nsec + 1,000,000,000 ;
+        (*ts3).tv_nsec = (*ts3).tv_nsec + 1000000000 ;  /* 1,000,000,000 */
     }
 
     return 0 ;
