@@ -13,3 +13,9 @@ int tsop_subtract
 , const struct timespec *ts2
 , struct timespec *ts3 
 ) ;
+
+int tsop_add
+( const struct timespec *ts1
+, const struct timespec *ts2
+, struct timespec *ts3 
+) ;
