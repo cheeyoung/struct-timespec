@@ -6,7 +6,7 @@
 #include <time.h>
 
 /* functions */
-int tsop_gettime(struct timespec *ts) ;
+int tsop_gettime(struct timespec *p) ;
 
 int tsop_subtract
 ( const struct timespec *ts1
