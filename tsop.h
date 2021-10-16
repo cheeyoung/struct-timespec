@@ -6,6 +6,8 @@
 #include <time.h>
 
 /* functions */
+int tsop_store(struct timespec *ts) ;
+
 int tsop_subtract
 ( const struct timespec *ts1
 , const struct timespec *ts2
