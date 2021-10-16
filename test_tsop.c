@@ -14,21 +14,21 @@ int main()
     int rv ;  /* Return Value */
     int errno ;  /* Linux */
     
-    rv = clock_gettime(CLOCK_MONOTONIC, &ts1) ;
+    rv = tsop_gettime(&ts1) ;
     if (rv != 0)  /* rv == -1 */
     {
-        printf("ERROR: clock_gettime returned %d, errno = %d\n", rv, errno) ;
+        printf("ERROR: tsop_gettime returned %d\n", rv) ;
         return -1 ;
     }
-    printf("DEBUG: %ld.%09ld \n", ts1.tv_sec, ts1.tv_nsec) ;
+    printf("INFO: %ld.%09ld \n", ts1.tv_sec, ts1.tv_nsec) ;
 
-    rv = clock_gettime(CLOCK_MONOTONIC, &ts2) ;
+    rv = tsop_gettime(&ts2) ;
     if (rv != 0)  /* rv == -1 */
     {
-        printf("ERROR: clock_gettime returned %d, errno = %d\n", rv, errno) ;
+        printf("ERROR: tsop_gettime returned %d\n", rv) ;
         return -1 ;
     }
-    printf("DEBUG: %ld.%09ld \n", ts2.tv_sec, ts2.tv_nsec) ;
+    printf("INFO: %ld.%09ld \n", ts2.tv_sec, ts2.tv_nsec) ;
     
     rv = tsop_subtract(&ts2, &ts1, &ts3) ;
     printf("Elapsed Time : %ld.%09ld \n", ts3.tv_sec, ts3.tv_nsec) ;
