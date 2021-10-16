@@ -4,6 +4,22 @@
     20211004 Created
 */
 #include <time.h>
+#include <stdio.h>
+
+int tsop_gettime(struct timespec *p)
+{
+    int rv ;  /* Return Value */
+    int errno ;  /* Linux */
+    
+    rv = clock_gettime(CLOCK_MONOTONIC, p ) ;
+    if (rv != 0)  /* rv == -1 */
+    {
+        printf("ERROR: clock_gettime returned %d, errno = %d\n", rv, errno) ;
+        return -1 ;
+    }
+    printf("DEBUG: %ld.%09ld \n", (*p).tv_sec, (*p).tv_nsec) ;
+    return 0 ;
+}
 
 int tsop_subtract
 ( const struct timespec *ts1
