@@ -24,11 +24,11 @@ int tsar_gettime(tsarr *ta)
     if (rv != 0)  /* rv == -1 */
     {
         printf("ERROR: tsop_gettime returned %d\n", rv) ;
-        /* return to the caller leaving the offest as before */
+        /* return to the caller leaving the offest as before, rollback */
         return -1 ;
     }
     
-    /* if successful, advance the offset by 1. means commit this local transaction. */
+    /* if successful, advance the offset by 1., commit this local transaction. */
     (*ta).n_offset = (*ta).n_offset + 1 ;
     /* if the offset == the number of elements then reset the offset to 0 */
     if ((*ta).n_offset == (*ta).n_elements)
