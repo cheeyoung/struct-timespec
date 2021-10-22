@@ -24,7 +24,7 @@ int tsar_gettime(tsarr *ta)
     if (rv != 0)  /* rv == -1 */
     {
         printf("ERROR: tsop_gettime returned %d\n", rv) ;
-        /* return to the caller leaving the offest as before, rollback */
+        /* return to the caller leaving the offset as before, rollback */
         return -1 ;
     }
     
