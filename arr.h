@@ -10,5 +10,6 @@ typedef struct
 }   arr ;
 
 /* functions */
+int arr_dump(arr *a) ;
 int arr_malloc(arr *a, const int al, const int el, const char *typestr) ;
 int arr_free(arr *a) ;
