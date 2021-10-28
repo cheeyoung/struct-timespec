@@ -10,8 +10,8 @@
 int arr_dump(arr *a)
 {
     printf("Array %lx\n", (unsigned long int)(*a).p) ;
-    printf("The number of elements = %d\n", (*a).al) ;
-    printf("The length of each element = %d for type \"%s\"\n", (*a).el, (*a).typestr) ;
+    printf("The number of elements is %d\n", (*a).al) ;
+    printf("The length of each element is %d for type \"%s\"\n", (*a).el, (*a).typestr) ;
     return 0 ;
 }
 
