@@ -46,6 +46,8 @@ int arr_malloc(arr *a, const int al, const int el, const char *typestr)
 
 int arr_free(arr *a)
 {
+    free((*a).typestr) ;
+    (*a).typestr = 0 ;
     free((*a).p) ;
     (*a).p = 0 ;
     return 0 ;
