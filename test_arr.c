@@ -11,7 +11,7 @@ int main()
     
     int rv ;  /* Return Value */
     
-    rv = arr_malloc(&a1, 512, sizeof(int), "int") ;
+    rv = arr_malloc(&a1, 12, sizeof(int), "int") ;
     printf("arr_malloc returned %d\n", rv) ;
     rv = arr_dump(&a1) ;
     
@@ -31,10 +31,10 @@ int main()
     printf("arr_malloc returned %d\n", rv) ;
     rv = arr_dump(&a5) ;
 
-    for (int i = 0; i < 256; i++)
-        ((int *)a1.p)[i] = i ;
+    for (int i = 0; i < 17; i++)
+        rv = arr_add_int(&a1, i) ;
     
-    for (int i = 0; i < 256; i++)
+    for (int i = 0; i < 11; i++)
         printf("%d ", ((int *)a1.p)[i]) ;
     
     rv = arr_free(&a1) ;
