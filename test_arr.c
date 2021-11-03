@@ -32,10 +32,16 @@ int main()
     rv = arr_dump(&a5) ;
 
     for (int i = 0; i < 17; i++)
+    {
         rv = arr_add_int(&a1, i) ;
+        printf("arr_add_int returned %d\n", rv) ;
+    }
     
     for (int i = 0; i < 11; i++)
         printf("%d ", ((int *)a1.p)[i]) ;
+
+    rv = arr_add_int(&a2, 1) ;
+    printf("arr_add_int returned %d\n", rv) ;
     
     rv = arr_free(&a1) ;
     printf("arr_free returned %d\n", rv) ;
