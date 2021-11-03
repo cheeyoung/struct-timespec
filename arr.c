@@ -7,6 +7,24 @@
 #include "arr.h"
 
 /* functions */
+int arr_add_int(arr *a, int n)
+{
+    int i ;
+    
+    if (sizeof(int) != (*a).el)
+    {
+        printf("ERROR: The length of each element is %d for type \"%s\"\n", (*a).el, (*a).typestr) ;
+        return -1 ;
+    }
+    
+    i = (*a).ne ;
+    printf("DEBUG: ne = %d\n", i) ;
+    
+    ((int *)(*a).p)[i] = n ;
+    (*a).ne = ((*a).ne + 1) % (*a).al ;
+    return 0 ;
+}
+
 int arr_dump(arr *a)
 {
     printf("Array %lx\n", (unsigned long int)(*a).p) ;
@@ -20,6 +38,9 @@ int arr_malloc(arr *a, const int al, const int el, const char *typestr)
     size_t len ;
     int errno ;  /* Linux */
     
+    (*a).ne = 0 ;
+    
+    /* array */
     (*a).al = al ; (*a).el = el ;
     
     len = strlen(typestr) ;
