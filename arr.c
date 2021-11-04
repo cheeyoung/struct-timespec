@@ -1,9 +1,11 @@
 /*
     20211028 Created
 */
+#include <time.h>
 #include <stdlib.h>  /* malloc */
 #include <string.h>  /* strlen */
 #include <stdio.h>
+#include "tsop.h"
 #include "arr.h"
 
 /* functions */
@@ -18,9 +20,33 @@ int arr_add_int(arr *a, int n)
     }
     
     i = (*a).ne ;
-    printf("DEBUG: ne = %d\n", i) ;
+    printf("DEBUG: ne = %d, Array %lx\n", i, (unsigned long int)(*a).p) ;
     
     ((int *)(*a).p)[i] = n ;
+    (*a).ne = ((*a).ne + 1) % (*a).al ;
+    return 0 ;
+}
+
+int arr_add_timespec(arr *a)
+{
+    int i ;
+    int rv ;  /* Return Value */
+    
+    if (sizeof(struct timespec) != (*a).el)
+    {
+        printf("ERROR: The length of each element is %d for type \"%s\"\n", (*a).el, (*a).typestr) ;
+        return -1 ;
+    }
+    
+    i = (*a).ne ;
+    printf("DEBUG: ne = %d, Array %lx\n", i, (unsigned long int)(*a).p) ;
+    
+    rv = tsop_gettime(&(((struct timespec *)(*a).p)[i])) ;
+    if (rv != 0)  /* rv == -1 */
+    {
+        printf("ERROR: tsop_gettime returned %d\n", rv) ;
+        return -1 ;
+    }
     (*a).ne = ((*a).ne + 1) % (*a).al ;
     return 0 ;
 }
