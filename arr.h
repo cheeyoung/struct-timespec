@@ -13,6 +13,7 @@ typedef struct
 
 /* functions */
 int arr_add_int(arr *a, int n) ;
+int arr_add_timespec(arr *a) ;
 int arr_dump(arr *a) ;
 int arr_malloc(arr *a, const int al, const int el, const char *typestr) ;
 int arr_free(arr *a) ;
