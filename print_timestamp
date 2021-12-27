@@ -1,0 +1,67 @@
+#
+#       20100811 CheeYoung O    Replaced == with = as for HP-UX (11.31)
+#       20100726 CheeYoung O    Created, print timestamp in local time
+#                               HP-UX 11.11 9000/800, IBM AIX 5L 5.2 POWER
+#
+TZ=KST-9
+export TZ
+
+#
+#       uname command
+#
+if [ -x /usr/bin/uname ]        ; then
+        UNAME_CMD=/usr/bin/uname
+elif [ -x /bin/uname ]  ; then
+        UNAME_CMD=/bin/uname
+else
+        print "uname command is not found.\n"
+        exit 0
+fi
+
+OS_NAME=`$UNAME_CMD -s`
+OS_RELEASE=`$UNAME_CMD -r`
+
+#
+#       OS specific
+#
+case "$OS_NAME" in
+'Linux')
+        DATE_CMD=/bin/date
+        ;;
+'AIX'|'HP-UX'|'OSF1'|'SunOS')
+        DATE_CMD=/usr/bin/date
+        ;;
+*)
+        print "%s OS is not supported.\n" "$OS_NAME"
+        exit 0
+        ;;
+esac
+
+#
+#       Release specific
+#
+if      [ "$OS_NAME" = "Linux" ]        ;       then
+        FORMAT_STR_TZ="GMT%z (%Z)"
+elif [ "$OS_NAME" = "HP-UX" ]   ;       then
+        case "$OS_RELEASE" in
+        'B.11.31')
+                FORMAT_STR_TZ="GMT%z (%Z)"
+                ;;
+        *)
+                FORMAT_STR_TZ=%Z
+                ;;
+        esac
+elif [ "$OS_NAME" = "SunOS" ]   ;       then
+        case "$OS_RELEASE" in
+        '5.10')
+                FORMAT_STR_TZ="GMT%z (%Z)"
+                ;;
+        *)
+                FORMAT_STR_TZ=%Z
+                ;;
+        esac
+else
+        FORMAT_STR_TZ=%Z
+fi
+
+"$DATE_CMD" +"%Y-%m-%d %R $FORMAT_STR_TZ"
