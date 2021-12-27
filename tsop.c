@@ -1,6 +1,7 @@
 /*
     tsop.c - operators for struct timespec in time.h
     
+    20211227 CLOCK_MONOTONIC and CLOCK_REALTIME in AIX 7.2, Linux, and Solaris 11.4
     20211004 Created
 */
 #include <time.h>
